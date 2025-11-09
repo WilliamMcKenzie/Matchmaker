@@ -119,8 +119,9 @@ func (client *Client) GetMessages() {
 			break
 		}
 		if client.match != nil {
-			Send(string(message), client.match, client.email)
-			Send(string(message), client.socket, client.email)
+			special := get_rating(string(message))
+			Send(string(message), client.match, client.email, special)
+			Send(string(message), client.socket, client.email, special)
 		}
 	}
 }
@@ -172,9 +173,9 @@ func (client *Client) Match(socket *websocket.Conn) {
 	}
 }
 
-func Send(message string, socket *websocket.Conn, author string) {
+func Send(message string, socket *websocket.Conn, author string, special string) {
 	log.Println("Sending message")
-	err := socket.WriteMessage(websocket.TextMessage, []byte(fmt.Sprintf(message+"~"+author+"~"+get_rating(message))))
+	err := socket.WriteMessage(websocket.TextMessage, []byte(fmt.Sprintf(message+"~"+author+"~"+special)))
 	if err != nil {
 		return
 	}
