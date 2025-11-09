@@ -42,7 +42,7 @@ func get_rating(message string) string {
 	my := int32(0)
 	result, err := client.Models.GenerateContent(ctx,
 		"gemini-2.0-flash",
-		genai.Text(`Choose one of the following words (YOU SHOULD ONLY RETURN A SINGLE WORD NO OTHER TEXT), [brilliant, great, good, mistake, blunder] which bests describes this message in the context of an online dating conversation. If it is somewhat regular then return an empty string. Message: `+message),
+		genai.Text(`Choose one of the following words (YOU SHOULD ONLY RETURN A SINGLE WORD NO OTHER TEXT), [brilliant, great, good, mistake, blunder] which bests describes this message in the context of an online dating conversation. If it is somewhat regular then return nothing. Message: `+message),
 		&genai.GenerateContentConfig{
 			MaxOutputTokens: 10,
 			ThinkingConfig: &genai.ThinkingConfig{
