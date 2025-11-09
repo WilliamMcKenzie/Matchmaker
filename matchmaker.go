@@ -38,7 +38,7 @@ func get_rating(message string) string {
 	if err != nil {
 		log.Fatal(err)
 	}
-
+	//dsadsa
 	my := int32(0)
 	result, err := client.Models.GenerateContent(ctx,
 		"gemini-2.5-flash",
